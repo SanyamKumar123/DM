@@ -43,7 +43,7 @@ def naive_bayes(filepath, target, model, test_size):
     # Split
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=42)
 
-    # Candidate models 
+    # models 
     models = {
         "gaussian": (GaussianNB(), StandardScaler()),
         "multinomial": (MultinomialNB(), MinMaxScaler()),
@@ -52,7 +52,7 @@ def naive_bayes(filepath, target, model, test_size):
 
     results = {}
 
-    # Auto: train all 3 and compare accuracies
+    # Auto: train all 3 and compare accuracie
     if model == "auto":
         click.echo("Auto mode: testing all models for best accuracy...\n")
         for name, (clf, scaler) in models.items():
@@ -64,7 +64,7 @@ def naive_bayes(filepath, target, model, test_size):
             results[name] = acc
             click.echo(f"   • {name.title():<11} → Accuracy: {acc:.4f}")
 
-        # pick best
+        # best
         model = max(results, key=results.get)
         click.echo(f"\n Best model selected: {model.title()} NB (Accuracy: {results[model]:.4f})\n")
 
