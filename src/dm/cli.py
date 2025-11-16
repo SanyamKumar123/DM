@@ -4,25 +4,20 @@ import numpy as np
 from apriori import apriori
 from preprocess import preprocess
 from kmeans import kmeans
+from dtree import dtree 
+from naivebayes import naive_bayes
+    
 
 @click.group()
 def root():
     "Data Mining Project"
 
-@click.command()
-@click.option("--count", default=1, help="Number of greetings.")
-@click.option("--surname", default="gupta", help="Surname.")
-@click.argument("name")
-@click.argument("midname")
-def hello(count, surname,midname, name):
-    arr = np.arange(count)
-    df = pd.DataFrame({"No": arr + 1, "Greeting": [f"Hello, {name} {midname} {surname}"] * count})
-    click.echo(df.to_string(index=False))
-
 root.add_command(hello)
 root.add_command(apriori)
 root.add_command(preprocess)
 root.add_command(kmeans)
+root.add_command(dtree)
+root.add_command(naive_bayes)
 
 if __name__ == "__main__":
     root()
